@@ -4,6 +4,34 @@ for {set i 1} {$i < 2} {incr i 1} {
 set prompt {\$ $};
 
 spawn bash
+
+expect "satvik@pes:~$ "
+send "lftp\r"
+
+expect "lftp :~> "
+send "set ssl:verify-certificate no\r"
+expect "lftp :~> "
+send "set xfer:clobber on\r"
+expect "lftp :~> "
+send "lftp ftp://epiz_20655524@ftp.epizy.com\r"
+expect "Password: "
+send "Saps007\r"
+expect "lftp epiz_20655524@ftp.epizy.com:~> "
+send "cd htdocs/images\r"
+expect "lftp epiz_20655524@ftp.epizy.com:/htdocs/images> "
+send "lcd /home/satvik/darknet/data\r"
+
+expect "lftp epiz_20655524@ftp.epizy.com:/htdocs/images> "
+send "get /htdocs/images/image1.jpg\r"
+expect "lftp epiz_20655524@ftp.epizy.com:/htdocs/images> "
+send "get /htdocs/images/image2.jpg\r"
+expect "lftp epiz_20655524@ftp.epizy.com:/htdocs/images> "
+send "get /htdocs/images/image3.jpg\r"
+expect "lftp epiz_20655524@ftp.epizy.com:/htdocs/images> "
+send "get /htdocs/images/image4.jpg\r"
+expect "lftp epiz_20655524@ftp.epizy.com:/htdocs/images> "
+send "exit\r"
+
 expect "satvik@pes:~$ "
 send "cd /home/satvik/darknet\r"
 
